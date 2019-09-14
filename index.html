@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>月相 - by Juexe</title>
+    <style>
+        :root {
+            --blockSize: 2em;
+            --blockCrossSize: 4em;
+            --fullColor: rgb(230, 202, 45);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: rgb(0, 35, 51)
+        }
+
+        .moon {
+            max-width: 30vh;
+            margin: 0 auto;
+        }
+        .text {
+            color: white;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2em;
+
+            overflow: hidden;
+
+            writing-mode: vertical-lr;
+
+            width: var(--blockSize);
+            height: var(--blockCrossSize);
+        }
+
+
+        .path {
+            animation: moonAniSimple 20s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        .text ul {
+            animation: textAni 20s ease-out infinite;
+            animation-delay: 2s;
+
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .text ul li {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            letter-spacing: 5px;
+
+            width: var(--blockSize);
+            height: var(--blockCrossSize);
+        }
+
+        @keyframes textAni {
+
+            /* 新月 */
+            0% {
+                margin-left: 0;
+                color: white;
+            }
+
+            /* 眉月 */
+            12.5% {
+                margin-left: calc(var(--blockSize) * -1);
+            }
+
+            /* 上弦月 */
+            25% {
+                margin-left: calc(var(--blockSize) * -2);
+            }
+
+            /* 盈凸月 */
+            37.5% {
+                margin-left: calc(var(--blockSize) * -3);
+            }
+
+            /* 满月 */
+            50% {
+                margin-left: calc(var(--blockSize) * -4);
+                color: var(--fullColor);
+            }
+
+            /* 亏凸月 */
+            62.5% {
+                margin-left: calc(var(--blockSize) * -5);
+            }
+
+            /* 下弦月 */
+            75% {
+                margin-left: calc(var(--blockSize) * -6);
+            }
+
+            /* 残月 */
+            87.5% {
+                margin-left: calc(var(--blockSize) * -7);
+            }
+
+            /* 新月 */
+            100% {
+                margin-left: calc(var(--blockSize) * -8);
+                color: white;
+            }
+        }
+
+        @keyframes moonAniSimple {
+
+            /* 新月 */
+            0% {
+                d: path("M 250 0 A 250 250 0 1, 1 250 500   A 250 250 0 1, 0 250 0 z");
+                fill: white;
+            }
+
+            /* 上弦月 */
+            25% {
+                d: path("M 250 0 A 0 250 0 1, 1 250 500     A 250 250 0 1, 0 250 0 z");
+            }
+
+            25.01% {
+                d: path("M 250 0 A 0 250 0 1, 0 250 500     A 250 250 0 1, 0 250 0 z");
+            }
+
+            /* 满月 */
+            50% {
+                d: path("M 250 0 A 250 250 0 1, 0 250 500   A 250 250 0 1, 0 250 0 z");
+                fill: var(--fullColor);
+            }
+
+            /* 下弦月 */
+            75% {
+                d: path("M 250 0 A 250 250 0 1, 0 250 500   A 0 250 0 1, 0 250 0 z");
+            }
+
+            75.01% {
+                d: path("M 250 0 A 250 250 0 1, 0 250 500   A 0 250 0 1, 1 250 0 z");
+            }
+
+            /* 新月 */
+            100% {
+                d: path("M 250 0 A 250 250 0 1, 0 250 500 A 250 250 0 1, 1 250 0 z");
+                fill: white;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blank" style="min-height: 30vh"></div>
+    <div class="text">
+        <ul>
+            <li>新月</li>
+            <li>峨眉月</li>
+            <li>上弦月</li>
+            <li>盈凸月</li>
+            <li>满月</li>
+            <li>亏凸月</li>
+            <li>下弦月</li>
+            <li>残月</li>
+            <li>新月</li>
+        </ul>
+    </div>
+    <div class="moon">
+        <svg width="100%" height="100%" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <path fill="white" d="M 250 0 A 250 250 0 1, 1 250 500   A 250 250 0 1, 0 250 0 z" class="path" />
+            <circle fill="none" stroke="gray" r="250" cx="250" cy="250" />
+        </svg>
+    </div>
+</body>
+
+</html>
